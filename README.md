@@ -1,0 +1,1 @@
+# konzolova-evidence-pojistencu
