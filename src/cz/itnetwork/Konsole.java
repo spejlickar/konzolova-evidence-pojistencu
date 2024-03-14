@@ -17,15 +17,27 @@ public class Konsole {
     }
 
     /**
-     *
-     * @param otazka
-     * @return
+     * vrati text z konzole po zadane otazce
+     * @param otazka otazka
+     * @return text zadany uzivatelem
      */
-    public String zjistiText(String otazka){
-        return scanner.nextLine();
-    }
-    public int zjistiCislo(String otazka){
+    public String zjistiText(String otazka) {
         System.out.print(otazka);
+        String odpoved = scanner.nextLine();
+        if (odpoved.equals("")) {
+            return zjistiText(otazka);
+        } else {
+            return odpoved;
+        }
+    }
+
+    /**
+     * vrati cislo z konzole pokud nezada cislo, zepta se znovu
+     * @param otazka otazka
+     * @return cislo
+     */
+    public int zjistiCislo(String otazka){
+        /*System.out.print(otazka);
         boolean jeSpravne = false;
         int cislo = 0;
         while (!jeSpravne) {
@@ -36,6 +48,14 @@ public class Konsole {
                 System.out.print("Zadej znovu:");
             }
         }
-        return cislo;
+        return cislo;*/
+        System.out.print(otazka);
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (Exception e) {
+                return zjistiCislo(otazka);
+            }
+
+        }
     }
-}
+
