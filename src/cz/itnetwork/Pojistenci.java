@@ -1,7 +1,7 @@
 package cz.itnetwork;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +9,7 @@ public class Pojistenci {
     /**
      * seznam pojistencu
      */
-    private List<Pojistenec> pojistenci = new LinkedList<>();
+    private List<Pojistenec> pojistenci = new ArrayList<>();
 
     /**
      * vrati kolekci vsech pojistencu
@@ -36,7 +36,7 @@ public class Pojistenci {
      * @param pojistenec novy pojistenec
      */
     public void pridejPojistence(Pojistenec pojistenec){
-        pojistenci.addLast(pojistenec);
+        pojistenci.add(pojistenec);
     }
 
     /**

@@ -35,20 +35,20 @@ public class EvidencePojistencu {
                     pojistenci.pridejPojistence(new Pojistenec(
                             konsole.zjistiText("Zadej jmeno pojistneho:"),
                             konsole.zjistiText("Zadejte prijmeni:"),
-                            konsole.zjistiText("Zadejte telefoni cislo:"),
-                            konsole.zjistiCislo("Zadejte vek:")));
-                    konsole.vypisText("Data ulozeny\n");
+                            konsole.zjistiTelefoniCislo("Zadejte telefoni cislo:"),
+                            konsole.zjistiKladneCislo("Zadejte vek:",150)));
+                    konsole.vypisText("Data ulozeny");
                     break;
                 case 2:
                     for (Pojistenec pojistenec: pojistenci.vypisVsechnyPojistence()){
-                        konsole.vypisText(pojistenec.toString()+"\n");
+                        konsole.vypisText(pojistenec+"");
                     }
                     break;
                 case 3:
                     for (Pojistenec pojistenec: pojistenci.vyhledejPojistence(
                             konsole.zjistiText("Zadej jmeno:"),
                             konsole.zjistiText("Zadej prijmeni:"))){
-                        konsole.vypisText(pojistenec.toString()+"\n");
+                        konsole.vypisText(pojistenec+"");
                     }
                     break;
 

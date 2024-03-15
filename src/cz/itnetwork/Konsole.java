@@ -17,7 +17,7 @@ public class Konsole {
     }
 
     /**
-     * vrati text z konzole po zadane otazce
+     * vrati NEPRAZDNY text z konzole po zadane otazce
      * @param otazka otazka
      * @return text zadany uzivatelem
      */
@@ -37,25 +37,32 @@ public class Konsole {
      * @return cislo
      */
     public int zjistiCislo(String otazka){
-        /*System.out.print(otazka);
-        boolean jeSpravne = false;
-        int cislo = 0;
-        while (!jeSpravne) {
-            try {
-                cislo = Integer.parseInt(scanner.nextLine());
-                jeSpravne = true;
-            } catch (Exception e) {
-                System.out.print("Zadej znovu:");
-            }
-        }
-        return cislo;*/
         System.out.print(otazka);
-            try {
-                return Integer.parseInt(scanner.nextLine());
-            } catch (Exception e) {
-                return zjistiCislo(otazka);
-            }
-
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (Exception e) {
+            return zjistiCislo(otazka);
         }
     }
+
+    public int zjistiKladneCislo(String otazka,int maxCislo){
+        int cislo = zjistiCislo(otazka);
+        if ((cislo <= 0)||(cislo > maxCislo)) cislo = zjistiKladneCislo(otazka,maxCislo);
+        return cislo;
+    }
+    public static boolean jeCislo(String text) {
+        for (char znak:text.toCharArray()){
+            if (!Character.isDigit(znak)) return false;
+        }
+        return true;
+    }
+
+    public String zjistiTelefoniCislo(String otazka){
+        String odpoved = zjistiText(otazka).replace(" ","");
+        if (!jeCislo((odpoved.startsWith("+")) ? odpoved.substring(1, odpoved.length() - 1) : odpoved) || odpoved.length()<9) {
+            odpoved = zjistiTelefoniCislo(otazka);
+        }
+        return odpoved;
+    }
+}
 
