@@ -102,7 +102,15 @@ public class Pojistenec {
      */
     @Override
     public String toString() {
-        return String.format("%10s%10s%4d%12s",getJmeno(),getPrijmeni(),getVek(),getTelefon());
+        return String.format("%-15s%-15s%-6d%-20s",getJmeno(),getPrijmeni(),getVek(),getTelefon());
+    }
+
+    /**
+     * vypise hlavicku pro vypis pojistence
+     * @return text hlavicky
+     */
+    public static String textHlavicka(){
+        return String.format("%-15s%-15s%-6s%-20s","Jmeno","Prijmeni","Vek","Telefon");
     }
 }
 

@@ -9,42 +9,46 @@ public class Pojistenci {
     /**
      * seznam pojistencu
      */
-    private List<Pojistenec> pojistenci = new ArrayList<>();
+    private final List<Pojistenec> pojistenci = new ArrayList<>();
 
     /**
      * vrati kolekci vsech pojistencu
+     *
      * @return kolekce pojistencu
      */
-    public List<Pojistenec> vypisVsechnyPojistence(){
+    public List<Pojistenec> vypisVsechnyPojistence() {
         return Collections.unmodifiableList(pojistenci);
     }
 
     /**
      * vyhleda pojistence na zaklade jmena a prijmeni
-     * @param jmeno jmeno hledaneho
+     *
+     * @param jmeno    jmeno hledaneho
      * @param prijmeni prijmeni hledaneho
-     * @return
+     * @return seznam pojistencu
      */
-    public List<Pojistenec> vyhledejPojistence(String jmeno, String prijmeni){
+    public List<Pojistenec> vyhledejPojistence(String jmeno, String prijmeni) {
         return Collections.unmodifiableList(pojistenci
-                .stream().filter(a->jmeno.equals(a.getJmeno()))
-                .filter(a->prijmeni.equals(a.getPrijmeni())).collect(Collectors.toList()));
+                .stream().filter(a -> jmeno.equalsIgnoreCase(a.getJmeno().toLowerCase()))
+                .filter(a -> prijmeni.equalsIgnoreCase(a.getPrijmeni().toLowerCase())).collect(Collectors.toList()));
     }
 
     /**
      * pridani pojistence
+     *
      * @param pojistenec novy pojistenec
      */
-    public void pridejPojistence(Pojistenec pojistenec){
+    public void pridejPojistence(Pojistenec pojistenec) {
         pojistenci.add(pojistenec);
     }
 
     /**
      * vrati informace o poctu pojistencu
+     *
      * @return pocet pojistencu
      */
     @Override
     public String toString() {
-        return "Pojistenci pocet: " + pojistenci.size();
+        return "Pojistenci" + super.toString() + "pocet: " + pojistenci.size();
     }
 }

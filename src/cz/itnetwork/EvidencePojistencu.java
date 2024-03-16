@@ -1,59 +1,84 @@
 package cz.itnetwork;
 
+import java.util.List;
+
 public class EvidencePojistencu {
     /**
      * evidence pojistencu
      */
-    private Pojistenci pojistenci = new Pojistenci();
+    private final Pojistenci pojistenci = new Pojistenci();
     /**
      * konsole pro komunikaci s uzivatelem
      */
-    private Konsole konsole = new Konsole();
+    private final Konsole konsole = new Konsole();
+
+
     /**
      * vypise hlavicku
      */
-    private void vypisHlavicku(){
-        konsole.vypisText("----------------------------------");
-        konsole.vypisText("Evidence pojistenych");
-        konsole.vypisText("----------------------------------");
-        konsole.vypisText("");
-        konsole.vypisText("1 - Pridat noveho pojisteneho");
-        konsole.vypisText("2 - Vypsat vsechny pojistene");
-        konsole.vypisText("3 - Vyhledat pojisteneho");
-        konsole.vypisText("4 - Konec");
+    private void vypisHlavicku() {
+        vypisCaru();
+        konsole.vypisRadek("Evidence pojistenych");
+        vypisCaru();
+        konsole.vypisRadek("");
+        konsole.vypisRadek("1 - Pridat noveho pojisteneho");
+        konsole.vypisRadek("2 - Vypsat vsechny pojistene");
+        konsole.vypisRadek("3 - Vyhledat pojisteneho");
+        konsole.vypisRadek("4 - Konec");
+    }
+    /**
+     * vypise caru
+     */
+    private void vypisCaru() {
+        konsole.vypisRadek("------------------------------------------------------------");
+
     }
 
     public void SpustiEvidenci() {
-        int akce = 4;
+        int akce;
         do {
             vypisHlavicku();
             do {
                 akce = konsole.zjistiCislo("Vyberte si akci:");
-            } while (!((akce >= 1)&&(akce <= 4)));
-            switch (akce){
+            } while (!((akce >= 1) && (akce <= 4)));
+            List<Pojistenec> vypisPojistencu;
+            konsole.vypisRadek("");
+            switch (akce) {
                 case 1:
+                    //pridani uzivateel
                     pojistenci.pridejPojistence(new Pojistenec(
-                            konsole.zjistiText("Zadej jmeno pojistneho:"),
-                            konsole.zjistiText("Zadejte prijmeni:"),
+                            konsole.zjistiSlovo("Zadej jmeno pojistneho:"),
+                            konsole.zjistiSlovo("Zadejte prijmeni:"),
                             konsole.zjistiTelefoniCislo("Zadejte telefoni cislo:"),
-                            konsole.zjistiKladneCislo("Zadejte vek:",150)));
-                    konsole.vypisText("Data ulozeny");
+                            konsole.zjistiKladneCislo("Zadejte vek:", 150)));
+                    konsole.vypisRadek("---- Data ulozeny ----");
                     break;
                 case 2:
-                    for (Pojistenec pojistenec: pojistenci.vypisVsechnyPojistence()){
-                        konsole.vypisText(pojistenec+"");
-                    }
+                    //vypis vsech pojistencu
+                    vypisPojistencu = pojistenci.vypisVsechnyPojistence();
+                    if (!vypisPojistencu.isEmpty()) {
+                        konsole.vypisRadek(Pojistenec.textHlavicka());
+                        vypisCaru();
+                        for (Pojistenec pojistenec : vypisPojistencu) {
+                            konsole.vypisRadek(pojistenec + "");
+                        }
+                    } else konsole.vypisRadek("--- Zadne data k zobrazeni ----");
                     break;
                 case 3:
-                    for (Pojistenec pojistenec: pojistenci.vyhledejPojistence(
-                            konsole.zjistiText("Zadej jmeno:"),
-                            konsole.zjistiText("Zadej prijmeni:"))){
-                        konsole.vypisText(pojistenec+"");
-                    }
+                    //vypis pojistencu dle jmena a prijmeni
+                    vypisPojistencu = pojistenci.vyhledejPojistence(
+                            konsole.zjistiSlovo("Zadej jmeno:"),
+                            konsole.zjistiSlovo("Zadej prijmeni:"));
+                    if (!vypisPojistencu.isEmpty()) {
+                        konsole.vypisRadek(Pojistenec.textHlavicka());
+                        vypisCaru();
+                        for (Pojistenec pojistenec : vypisPojistencu) {
+                            konsole.vypisRadek(pojistenec + "");
+                        }
+                    } else konsole.vypisRadek("Pojistenec nenalezen.");
                     break;
-
             }
-
+            konsole.vypisRadek("");
         } while (akce != 4);
     }
 }
