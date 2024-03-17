@@ -63,9 +63,8 @@ public class Konsole {
      * @return CELE CISLO od uzivatele
      */
     public int zjistiCislo(String otazka) {
-        vypisText(otazka);
         try {
-            return Integer.parseInt(scanner.nextLine().trim());
+            return Integer.parseInt(zjistiText(otazka));
         } catch (Exception e) {
             return zjistiCislo("Chybne zadano zadej znovu:");
         }
