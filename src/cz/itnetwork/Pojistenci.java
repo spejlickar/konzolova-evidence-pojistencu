@@ -28,9 +28,9 @@ public class Pojistenci {
      * @return seznam pojistencu
      */
     public List<Pojistenec> vyhledejPojistence(String jmeno, String prijmeni) {
-        return Collections.unmodifiableList(pojistenci
-                .stream().filter(a -> jmeno.equalsIgnoreCase(a.getJmeno().toLowerCase()))
-                .filter(a -> prijmeni.equalsIgnoreCase(a.getPrijmeni().toLowerCase())).collect(Collectors.toList()));
+        return pojistenci.stream().filter(a -> jmeno.equalsIgnoreCase(a.getJmeno()))
+                .filter(a -> prijmeni.equalsIgnoreCase(a.getPrijmeni()))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /**

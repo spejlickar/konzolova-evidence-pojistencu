@@ -12,7 +12,6 @@ public class EvidencePojistencu {
      */
     private final Konsole konsole = new Konsole();
 
-
     /**
      * vypise hlavicku
      */
@@ -45,7 +44,7 @@ public class EvidencePojistencu {
             konsole.vypisRadek("");
             switch (akce) {
                 case 1:
-                    //pridani uzivateel
+                    //pridani uzivatele
                     pojistenci.pridejPojistence(new Pojistenec(
                             konsole.zjistiSlovo("Zadej jmeno pojistneho:"),
                             konsole.zjistiSlovo("Zadejte prijmeni:"),
