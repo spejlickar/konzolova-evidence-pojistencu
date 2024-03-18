@@ -3,7 +3,6 @@ package cz.itnetwork;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Pojistenci {
     /**
@@ -12,9 +11,9 @@ public class Pojistenci {
     private final List<Pojistenec> pojistenci = new ArrayList<>();
 
     /**
-     * vrati kolekci vsech pojistencu
+     * vrati nemenou kolekci vsech pojistencu
      *
-     * @return kolekce pojistencu
+     * @return nemena kolekce vsech pojistencu
      */
     public List<Pojistenec> vypisVsechnyPojistence() {
         return Collections.unmodifiableList(pojistenci);
@@ -25,12 +24,11 @@ public class Pojistenci {
      *
      * @param jmeno    jmeno hledaneho
      * @param prijmeni prijmeni hledaneho
-     * @return seznam pojistencu
+     * @return nemena kolekce pojistencu
      */
     public List<Pojistenec> vyhledejPojistence(String jmeno, String prijmeni) {
         return pojistenci.stream().filter(a -> jmeno.equalsIgnoreCase(a.getJmeno()))
-                .filter(a -> prijmeni.equalsIgnoreCase(a.getPrijmeni()))
-                .collect(Collectors.toUnmodifiableList());
+                .filter(a -> prijmeni.equalsIgnoreCase(a.getPrijmeni())).toList();
     }
 
     /**

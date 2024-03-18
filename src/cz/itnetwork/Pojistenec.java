@@ -17,13 +17,18 @@ public class Pojistenec {
      * vek pojistenece
      */
     private int vek;
+    /**
+     * format textoveho vytupu objektu
+     */
+    private final static String formatTextovyVystup = "%-15s%-15s%-6s%-20s";
 
     /**
      * vytvvori novou instanci pojistenec
-     * @param jmeno jmeno pojistence
+     *
+     * @param jmeno    jmeno pojistence
      * @param prijmeni prijmeni pojistence
-     * @param telefon telefonni cislo pojistence
-     * @param vek vek pojistence
+     * @param telefon  telefonni cislo pojistence
+     * @param vek      vek pojistence
      */
     public Pojistenec(String jmeno, String prijmeni, String telefon, int vek) {
         this.jmeno = jmeno;
@@ -34,6 +39,7 @@ public class Pojistenec {
 
     /**
      * vypis jmnena pojisteneho
+     *
      * @return vrati jmeno pojisteneho
      */
     public String getJmeno() {
@@ -42,6 +48,7 @@ public class Pojistenec {
 
     /**
      * zmeni jmeno pojisteneho
+     *
      * @param jmeno nove jmeno pojisteneho
      */
     public void setJmeno(String jmeno) {
@@ -50,6 +57,7 @@ public class Pojistenec {
 
     /**
      * vypis prijmeni pojisteneho
+     *
      * @return vrati jmeno pojisteneho
      */
     public String getPrijmeni() {
@@ -58,6 +66,7 @@ public class Pojistenec {
 
     /**
      * nastavi nove jmeno pojisteneho
+     *
      * @param prijmeni nove prijmeni pojisteneho
      */
     public void setPrijmeni(String prijmeni) {
@@ -66,6 +75,7 @@ public class Pojistenec {
 
     /**
      * vypise telefoni cislo
+     *
      * @return vrati telefoni cislo pojisteneho
      */
     public String getTelefon() {
@@ -74,6 +84,7 @@ public class Pojistenec {
 
     /**
      * nastavi nove jmeno pojisteneho
+     *
      * @param telefon nove cislo pojisteneho
      */
     public void setTelefon(String telefon) {
@@ -82,6 +93,7 @@ public class Pojistenec {
 
     /**
      * vypise vek pojisteneho
+     *
      * @return vrati vek pojisteneho
      */
     public int getVek() {
@@ -90,6 +102,7 @@ public class Pojistenec {
 
     /**
      * zmeni vek pojisteneho
+     *
      * @param vek novy vek pojisteneho
      */
     public void setVek(int vek) {
@@ -97,20 +110,22 @@ public class Pojistenec {
     }
 
     /**
-     * info
-     * @return info
+     * vrati informaci o objektu formatovany "formatTextovyVystup"
+     *
+     * @return info informaci o objektu
      */
     @Override
     public String toString() {
-        return String.format("%-15s%-15s%-6d%-20s",getJmeno(),getPrijmeni(),getVek(),getTelefon());
+        return String.format(formatTextovyVystup, getJmeno(), getPrijmeni(), Integer.toString(getVek()), getTelefon());
     }
 
     /**
-     * vypise hlavicku pro vypis pojistence
-     * @return text hlavicky
+     * vrati popis k "toString" formatovany "formatTextovyVystup"
+     *
+     * @return vrati popis k "toString"
      */
-    public static String textHlavicka(){
-        return String.format("%-15s%-15s%-6s%-20s","Jmeno","Prijmeni","Vek","Telefon");
+    public static String textHlavicka() {
+        return String.format(formatTextovyVystup, "Jmeno", "Prijmeni", "Vek", "Telefon");
     }
 }
 

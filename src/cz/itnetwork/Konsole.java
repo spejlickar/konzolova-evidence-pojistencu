@@ -1,5 +1,6 @@
 package cz.itnetwork;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Konsole {
@@ -18,6 +19,13 @@ public class Konsole {
     }
 
     /**
+     * vypise prazdny radek
+     */
+    public void vypisRadek() {
+        System.out.println();
+    }
+
+    /**
      * vypise text do konzole
      *
      * @param text text na vypsani
@@ -27,30 +35,58 @@ public class Konsole {
     }
 
     /**
-     * vrati NEPRAZDNY TEXT od uzivatele po zadane otazce
+     * vypise caru
+     */
+    public void vypisCaru() {
+        vypisRadek("------------------------------------------------------------");
+    }
+
+    /**
+     * vypise pojistence do konsole, pokud je prazdna kolekce vypise text "--- Zadni pojisteneci nenalezeni ----"
+     *
+     * @param pojistenci           kolekce pro vypis do konzole
+     */
+    public void vypisPojistencu(List<Pojistenec> pojistenci) {
+        if (pojistenci != null) {
+            if (!pojistenci.isEmpty()) {
+                vypisRadek(Pojistenec.textHlavicka());
+                vypisCaru();
+                for (Pojistenec pojistenec : pojistenci) {
+                    vypisRadek(pojistenec + "");
+                }
+            } else {
+                vypisRadek();
+                vypisRadek("--- Zadni pojisteneci nenalezeni ----");
+            }
+        }
+    }
+
+    /**
+     * vrati NEPRAZDNY TEXT(bez venkovnich mezer) od uzivatele po zadane otazce
      *
      * @param otazka otazka pro zjistkáni odpovedi
-     * @return text zadany uzivatelem
+     * @return NEPRAZDNY TEXT zadany uzivatelem
      */
     public String zjistiText(String otazka) {
         vypisText(otazka);
         String odpoved = scanner.nextLine().trim();
         if (odpoved.isEmpty()) {
-            return zjistiSlovo("Chybne zadano zadej znovu:");
+            return zjistiText("Chybne zadano (neobsahuje zadne znaky), zadej znovu:");
         } else {
             return odpoved;
         }
     }
+
     /**
-     * vrati NEPRAZDNY SLOVO od uzivatele po zadane otazce
+     * vrati SLOVO(bez vnitrnich mezer) od uzivatele po zadane otazce
      *
      * @param otazka otazka pro zjistkáni odpovedi
-     * @return slovo zadany uzivatelem
+     * @return SLOVO zadany uzivatelem
      */
     public String zjistiSlovo(String otazka) {
         String odpoved = zjistiText(otazka);
         if (odpoved.contains(" ")) {
-            return zjistiSlovo("Chybne zadano zadej znovu:");
+            return zjistiSlovo("Chybne zadano (zadano vice slov), zadej znovu:");
         } else {
             return odpoved;
         }
@@ -66,20 +102,25 @@ public class Konsole {
         try {
             return Integer.parseInt(zjistiText(otazka));
         } catch (Exception e) {
-            return zjistiCislo("Chybne zadano zadej znovu:");
+            return zjistiCislo("Chybne zadano (neni cele cislo), zadej znovu:");
         }
     }
 
     /**
-     * Vrati kladne cislo od uzivatel o maximalni hodnote
+     * Vrati cele cislo v danem intervalu od "minCislo" do "maxCislo" od uzivatele
      *
-     * @param otazka otazka pro zjistkáni odpovedi
+     * @param otazka   otazka pro zjistkáni odpovedi
+     * @param minCislo minimalni cislo zadani
      * @param maxCislo maximalni cislo zadani
-     * @return kladne cislo od uzivatel
+     * @return cele cislo v intervalu ("minCislo","maxCislo") od uzivatele
      */
-    public int zjistiKladneCislo(String otazka, int maxCislo) {
+    public int zjistiCisloVIntervalu(String otazka, int minCislo, int maxCislo) {
         int cislo = zjistiCislo(otazka);
-        if ((cislo <= 0) || (cislo > maxCislo)) return zjistiKladneCislo("Chybne zadano zadej znovu:", maxCislo);
+        if ((cislo <= 0) || (cislo > maxCislo)) {
+            return zjistiCisloVIntervalu(
+                    String.format("Chybne zadano (cislo neni v rozmezi od %d do %d), zadej znovu:", minCislo, maxCislo),
+                    minCislo, maxCislo);
+        }
         return cislo;
     }
 
