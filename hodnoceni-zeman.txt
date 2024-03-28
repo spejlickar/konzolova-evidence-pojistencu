@@ -1,0 +1,13 @@
+Ceníme práci na projektu! 🏆 Prohlédli jsme si kód a máme k němu následující poznámky:
+
+1. Pojmenování identifikátorů - Metoda vypisVsechnyPojistence() je v podstatě getter, její pojmenování může být matoucí.
+2. Dodržení principů SRP a SoC - ok
+3. Vhodný výběr datových typů - ok
+4. Formátování kódu - ok
+5. Duplicitní kód a nekonečné cykly - ok
+6. Validace vstupních dat - ok
+7. Logičnost a složitost - ok
+8. Komentáře - ok
+9. Celkové hodnocení - Kód je dobře strukturovaný a splňuje zadání. Některé pojmenování by mohlo být přesnější. Třídy Konsole a EvidencePojistencu by šly sloučit, ale jedná se spíše o otázku vkusu.
+
+Doporučujeme případné výtky v kódu opravit, abyste jej mohli pak prezentovat budoucímu zaměstnavateli v co nejlepší kvalitě. Pokud byste potřebovali s čímkoli pomoci, naplánujte si s námi konzultaci, rádi vám poradíme!
